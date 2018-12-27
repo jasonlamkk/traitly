@@ -5,11 +5,11 @@ import { Requestable, WithAutoParameters, WithQuery } from '../../src/http/index
 
 const TeamInfoRequest = ({teamId,tagId,newOnly}) =>
     traitly(
-        Taggable('TeamInfoRequest'),
-        ConsoleDebuggable(LogLevels.LOG),
+        Taggable('TeamInfoRequest'),    // tag the object in console log
+        ConsoleDebuggable(LogLevels.LOG),// remove this line disable logging
         Requestable({base: 'http://localhost:3000/',method:'GET',endPoint:'team/{teamId}/tag/{tagId:1}?new={newOnly:true}'}),
         WithAutoParameters,
-        WithQuery({hello:'world', sortDir: 'asc'}),
+        WithQuery({hello:'world', sortDir: 'asc'}),// allow adding extra query
     )({teamId,tagId,newOnly});
 // export default RecordSearchObject;  // do this if you are making a module
 
@@ -18,8 +18,6 @@ const TeamInfoRequest = ({teamId,tagId,newOnly}) =>
 const obj = TeamInfoRequest({teamId: 4, tagId: 23, newOnly: true})
 
 obj.log("before modify", obj.buildUrl());
-obj.log("after modify", obj.setQuery('extra', {
-    'world': 2
-}).setTeamId(8).setTagId(51).setNewOnly(false).buildUrl())
+obj.log("after modify", obj.setTeamId(8).setTagId(51).setNewOnly(false).buildUrl())
 // obj.log("Shall print, ", "later method override earlier method", obj);
 

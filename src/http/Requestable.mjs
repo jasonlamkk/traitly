@@ -1,3 +1,18 @@
+/**
+ * private function help convert object into query string
+ * @param obj 
+ * @param prefix 
+ */
+function serializeQueries(obj, prefix) {
+  return Object.keys(obj).reduce((acc, p)=> {
+    const k = prefix ? `${prefix  }[${  p  }]` : p;
+    const v = obj[p];
+    acc.push((v !== null && typeof v === "object") ?
+    serializeQueries(v, k) :
+    `${encodeURIComponent(k)  }=${  encodeURIComponent(v)}`);
+    return acc;
+  }, []).join('&');
+};
 
 const Requestable = ({ base, endPoint, method }) => o => {
   o.provide('requestable');
@@ -10,7 +25,7 @@ const Requestable = ({ base, endPoint, method }) => o => {
     queries:{},
     prePathMiddlewares:[],
     postPathMiddlewares:[],
-    preQueryMiddlewares:[],
+    preQueryMiddlewares:[(o,q) => `${q}${serializeQueries(o.queries)}`],
     postQueryMiddlewares:[],
     preBodyMiddlewares:[],
     postBodyMiddlewares:[],
