@@ -3,7 +3,7 @@ A lightweight Traits like module in JavaScript
 
 [![Build Status](https://travis-ci.org/jasonlamkk/traitly.svg?branch=master)](https://travis-ci.org/jasonlamkk/traitly) [![dependencies Status](https://david-dm.org/jasonlamkk/traitly/status.svg)](https://david-dm.org/jasonlamkk/traitly) [![devDependencies Status](https://david-dm.org/jasonlamkk/traitly/dev-status.svg)](https://david-dm.org/jasonlamkk/traitly?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-**Bring Traits from PHP to JavaScript** ✨
+**Bring Traits to JavaScript** ✨
 
 A Trait is distinguishing quality or characteristic.
 
@@ -14,6 +14,10 @@ Borrowed from PHP:
 # Usage / Samples
 
 TODO
+
+# Guideline
+
+* all setter ends with `return this`, so everything is chainable 
 
 # Features
 
